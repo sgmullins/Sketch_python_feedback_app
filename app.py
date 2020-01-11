@@ -12,7 +12,7 @@ if ENV == 'dev':
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SKETCHUP_DB_CONNECTION')
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SKETCHUP_HEROKU_DB_CONNECTION')
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
