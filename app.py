@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from send_mail import send_mail
@@ -8,10 +9,10 @@ ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost/SketchupFeedback'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SKETCHUP_DB_CONNECTION')
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://pwaeoupowzouvk:4b78634e4a806d0dfd4f281a13d6cd7d9a6f8a6b5959ff5129e021d4619fecc1@ec2-174-129-254-226.compute-1.amazonaws.com:5432/da07rk3ml2kufg'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SKETCHUP_HEROKU_DB_CONNECTION')
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
